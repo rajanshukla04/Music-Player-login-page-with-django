@@ -32,6 +32,8 @@ def your_django_signup_view(request):
         if UserProfile.objects.filter(email=email).exists() or UserProfile.objects.filter(mobile=mobile).exists():
             # Set an error message if the email or mobile number is already in use
             error_message = 'User with this email or mobile number already registered. Try a different email or mobile number.'
+        elif password!=confirm_password:
+            error_message="Password and confirm password are not Same"
         else:
             # Create a new UserProfile object and save it to the database
             user_profile = UserProfile.objects.create(
